@@ -4,4 +4,4 @@ torch==2.1.0
 yfinance==0.2.31
 pandas==2.1.4
 plotly==5.18.0
-sys
+
