@@ -28,6 +28,7 @@ class DQN(nn.Module):
 @st.cache_resource
 def load_model():
     model = DQN(state_size=4, action_size=3)
+    torch.save(model.state_dict(), "trading_model.pth")
     if os.path.exists("trading_model.pth"):
         model.load_state_dict(torch.load("trading_model.pth", map_location=torch.device('cpu')))
         model.eval()
