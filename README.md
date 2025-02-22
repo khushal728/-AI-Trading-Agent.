@@ -75,7 +75,7 @@ Implement reinforcement learning for enhanced predictions.
 
 # 👨‍💻 Author
 
-Developed by [Your Name].
+Developed by Khushal joshi.
 
 # 📜 License
 
