@@ -51,22 +51,27 @@ def compute_rsi(series, period=14):
 def get_stock_data(symbol):
     try:
         data = yf.download(symbol, period="3mo", interval="1d")
-        if data is None or data.empty:
-            st.error("❌ No data found for the given stock symbol. Please check and try again.")
+        
+        if data.empty:
+            st.error(f"❌ No data found for '{symbol}'. Please check the symbol and try again.")
             return None
+        
         data['SMA_5'] = data['Close'].rolling(window=5).mean()
         data['SMA_20'] = data['Close'].rolling(window=20).mean()
         data['SMA_50'] = data['Close'].rolling(window=50).mean()
         data['Returns'] = data['Close'].pct_change()
         data['RSI'] = compute_rsi(data['Close'])
         data.dropna(inplace=True)
+        
         if data.empty:
             st.error("❌ Not enough historical data for analysis.")
             return None
+        
         return data
     except Exception as e:
         st.error(f"⚠️ Error fetching data: {str(e)}")
         return None
+
 
 # Normalize input features
 def normalize_features(values):
